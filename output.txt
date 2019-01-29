@@ -1,0 +1,21 @@
+karan@SIPANJAB-EAN6A:/mnt/c/Users/sipanjab/Downloads/Karan/fine tech/mymalloc$ ./a.out
+0x7fffc371b260  0
+
+0x7fffc371b260  0
+0x7fffc371c290  1
+
+Trying to free 0xffffffffc371b260
+0x7fffc371b260  0
+0x7fffc371c290  1
+0x7fffc371c2b0  2
+
+0x7fffc371b260  0
+0x7fffc371c290  1
+0x7fffc371c2b0  2
+0x7fffc371c2d0  3
+
+0x7fffc371b260  0
+0x7fffc371c290  1
+0x7fffc371c2b0  2
+0x7fffc371c2d0  3
+0x7fffc371c2f0  4
