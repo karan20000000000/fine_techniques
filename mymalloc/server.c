@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 
 static void * book[100];
 static int bookcount = 0;
@@ -25,7 +26,6 @@ void showbook()
 void myfree(void *ptr)
 {
 
-    printf("Trying to free %p\n", ptr);
     for(int i=0; i<bookcount; i++)
     {
         if(book[i] == ptr)
@@ -33,7 +33,10 @@ void myfree(void *ptr)
             free(book[i]);
             printf("free-ed %p\n", book[i]);
             book[i] = NULL;
-            break;
+            // printf("%p eq %d\n", ptr, (book[i] == ptr));
+            return;
         }
     }
+
+    printf("Can't free %p as its either static or already free-ed\n", ptr);
 }
