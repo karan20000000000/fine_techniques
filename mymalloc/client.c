@@ -10,10 +10,12 @@ int main()
     free(q);
     free(p);
     free(q);
+
+
     int *r = (int *) malloc(5*sizeof(int));
     int *s = (int *) malloc(5*sizeof(int));
     int *t = (int *) malloc(5*sizeof(int));
-    free(q);
-    free(r);
+    free(q); //no error but it frees r!
+    free(r); //free(q) above frees r!
     free(t);
 }
