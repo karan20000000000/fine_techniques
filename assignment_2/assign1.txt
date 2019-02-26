@@ -1,0 +1,24 @@
+Assignment 1:
+marks : 15
+submission date : on or before 3rd march midnight.
+late submissions are rejected.
+mode of submission : will be intimated in a couple of days.
+
+Implement a memory manager:
+Idea:
+1. use an array of char of size n. You may decide the value of n.
+2. allow the user to decide the allocation policy - first fit, best fit or worst fit.
+3. support 
+	void* mymalloc(int);
+   Allocate a block of required size if possible based on the policy.
+   update the status of the block to filled. Note the size allocated.
+   update the free list.
+4. support
+	void free(void *);
+	deallocate the block pointed to by the given argument.
+    find the size allocated
+    mark the block as free
+    combine with adjacent freeblocks if any
+	update the freelist
+
+
