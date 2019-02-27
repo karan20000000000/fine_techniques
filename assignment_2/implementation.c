@@ -130,7 +130,7 @@ void display()
 
     while (temp != NULL)
     {
-        printf("%p | %d | %d ...\t", temp->next, getidx(temp), temp->size);
+        printf("%d | %d | ...\t %p -> ", getidx(temp), temp->size, temp->next);
         temp = temp->next;
     }
     printf("\nRemaining free total: %d\n", getRemainingFreeMem());
