@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdio.h>
+#include <limits.h>
 
 #define memsize 50
 #define blksize sizeof(blockinfo)
@@ -21,9 +22,9 @@ char mem[memsize]; //to accomodate initial two things for bookkeeping and housek
 
 blockinfo *head; //may not start from the beginnning but initially its in the beginning
 
-int getidx(char *ptr) //get index of char *
+int getidx(blockinfo *ptr) //get index of char *
 {
-    return ptr - mem;
+    return ptr - (blockinfo *)mem;
 }
 
 int getFreeMemAfter(blockinfo *p) //gets the free memory after a block
@@ -31,35 +32,47 @@ int getFreeMemAfter(blockinfo *p) //gets the free memory after a block
     //either the next is null or there is a next pointer
 
     //TODO: check for +-1 error
+    int size;
 
     if (p->next == NULL) //only node or last node
     {
-        return memsize - (getidx(p) + blksize + p->size);
+        size = memsize - (getidx(p) + blksize + p->size);
     }
     else
     {
-        return getidx(p->next) - (getidx(p) + blksize + p->size);
+        size = getidx(p->next) - (getidx(p) + blksize + p->size);
     }
-}
 
-void setblockpointer(int idx, int size)
-{
-    blockinfo *p = (blockinfo *)(mem + idx);
-    p->next = NULL;
-    p->size = size;
-
-    blockinfo *temp = head;
-    blockinfo *q = NULL;
-    while (temp != NULL && getidx(temp) < idx)
+    if (size < 0)
     {
-        q = temp;
-        temp = temp->next;
+        size = 0;
     }
+
+    return size;
 }
 
-void * mymalloc(int size)
+void *mymalloc(int size)
 {
-    char *ret = policyfun(size);
+    char *ret = NULL;
+    if (head == NULL)
+    {
+        head = (blockinfo *)mem;
+        head->next = NULL;
+        head->size = 0;
+
+        if (size + blksize <= memsize)
+        {
+            head->size = size;
+            ret = (char *) head;
+        }
+    }
+    else
+    {
+        ret = policyfun(size);
+    }
+    
+
+    return (void *)ret;
 }
 
 // void free(void *)
@@ -77,12 +90,12 @@ void setpolicy(char *pol)
     else if (strcmp(pol, "best") == 0)
     {
         policy = 2;
-        // policyfun = bestfit;
+        policyfun = bestfit;
     }
     else if (strcmp(pol, "worst") == 0)
     {
         policy = 3;
-        // policyfun = worstfit;
+        policyfun = worstfit;
     }
 }
 
@@ -105,7 +118,7 @@ void display()
     {
         head = (blockinfo *)mem;
         head->next = NULL;
-        head->size = 50;
+        head->size = 5;
     }
     blockinfo *temp = head;
 
@@ -117,28 +130,93 @@ void display()
     printf("\n");
 }
 
-char * firstfit(int size)   //return first free mem block
+char *firstfit(int size) //return first free mem block
 {
     blockinfo *temp = head;
-    while(temp != NULL && getFreeMemAfter(temp) < (size + blksize))
+    while (temp != NULL && getFreeMemAfter(temp) < (size + blksize))
     {
         temp = temp->next;
     }
 
-    if(temp == NULL) return NULL;   //was unable to find a free memory block
+    if (temp == NULL)
+        return NULL; //was unable to find a free memory block
 
-    blockinfo *newblock = (blockinfo *) (temp + blksize + temp->size);
+    blockinfo *newblock = (blockinfo *)(temp + blksize + temp->size);
     newblock->next = temp->next;
     newblock->size = size;
     temp->next = newblock;
 
-    return (char *) (newblock + blksize);
+    return (char *)(newblock + blksize);
 }
 
-
-int main()
+char *bestfit(int size)
 {
-    display();
-    char * t = firstfit(20);
-    display();
+    blockinfo *temp = head;
+    blockinfo *insertAfter = NULL;
+    int mindiff = INT_MAX;
+
+    while (temp != NULL)
+    {
+        int freemem = getFreeMemAfter(temp);
+        int diff = freemem - size;
+        if (diff >= 0 && diff < mindiff)
+        {
+            insertAfter = temp;
+        }
+
+        temp = temp->next;
+    }
+
+    if (insertAfter == NULL)
+        return NULL;
+
+    blockinfo *newblock = (blockinfo *)(insertAfter + blksize + insertAfter->size);
+    newblock->next = insertAfter->next;
+    newblock->size = size;
+    insertAfter->next = newblock;
+
+    return (char *)(newblock + blksize);
 }
+
+char *worstfit(int size)
+{
+    blockinfo *temp = head;
+    blockinfo *insertAfter = NULL;
+    int mindiff = 0;
+
+    while (temp != NULL)
+    {
+        int freemem = getFreeMemAfter(temp);
+        int diff = freemem - size;
+        if (diff >= 0 && diff > mindiff)
+        {
+            insertAfter = temp;
+        }
+
+        temp = temp->next;
+    }
+
+    if (insertAfter == NULL)
+        return NULL;
+
+    blockinfo *newblock = (blockinfo *)(insertAfter + blksize + insertAfter->size);
+    newblock->next = insertAfter->next;
+    newblock->size = size;
+    insertAfter->next = newblock;
+
+    return (char *)(newblock + blksize);
+}
+
+int getRemainingFreeMem()
+{
+    int size = 0;
+    blockinfo *temp = head;
+    while(temp != NULL)
+    {
+        size += getFreeMemAfter(temp);
+        temp = temp->next;
+    }
+
+    return size;
+}
+

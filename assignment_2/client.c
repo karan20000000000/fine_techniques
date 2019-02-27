@@ -4,7 +4,6 @@
 
 int main()
 {
-    char arr[10];
-
-    printf("%d", (arr + 10) - (arr + 1));
+    setpolicy("best");
+    mymalloc(5);
 }

@@ -4,5 +4,6 @@
 
 int main()
 {
+   int *arr = (int *) mymalloc(34);
    display();
 }
