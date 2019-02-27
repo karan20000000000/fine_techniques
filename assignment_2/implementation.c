@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define memsize 66
+#define memsize 10000
 #define blksize sizeof(blockinfo)
 
 char *firstfit(int);
@@ -24,7 +24,8 @@ blockinfo *head; //may not start from the beginnning but initially its in the be
 
 int getidx(blockinfo *ptr) //get index of blockinfo *
 {
-    return ptr - (blockinfo *)mem;
+    // return ptr - (blockinfo *)mem;
+    return (char *) ptr - mem;
 }
 
 int getFreeMemAfter(blockinfo *p) //gets the free memory after a block
@@ -129,10 +130,10 @@ void display()
 
     while (temp != NULL)
     {
-        printf("%p | %d ...\t", temp->next, temp->size);
+        printf("%p | %d | %d ...\t", temp->next, getidx(temp), temp->size);
         temp = temp->next;
     }
-    printf("\n");
+    printf("\nRemaining free total: %d\n", getRemainingFreeMem());
 }
 
 char * firstfit(int size) //return first free mem block
@@ -146,7 +147,7 @@ char * firstfit(int size) //return first free mem block
     if (temp == NULL)
         return NULL; //was unable to find a free memory block
 
-    blockinfo *newblock = (blockinfo *)(temp + blksize + temp->size);
+    blockinfo *newblock = (blockinfo *)((char *) temp + blksize + temp->size);
     newblock->next = temp->next;
     newblock->size = size;
     temp->next = newblock;
@@ -175,7 +176,7 @@ char * bestfit(int size)
     if (insertAfter == NULL)
         return NULL;
 
-    blockinfo *newblock = (blockinfo *)(insertAfter + blksize + insertAfter->size);
+    blockinfo *newblock = (blockinfo *)((char *) insertAfter + blksize + insertAfter->size);
     newblock->next = insertAfter->next;
     newblock->size = size;
     insertAfter->next = newblock;
@@ -204,7 +205,7 @@ char * worstfit(int size)
     if (insertAfter == NULL)
         return NULL;
 
-    blockinfo *newblock = (blockinfo *)(insertAfter + blksize + insertAfter->size);
+    blockinfo *newblock = (blockinfo *)((char *) insertAfter + blksize + insertAfter->size);
     newblock->next = insertAfter->next;
     newblock->size = size;
     insertAfter->next = newblock;
@@ -224,3 +225,9 @@ int getRemainingFreeMem()
 
     return size;
 }
+
+// int main()
+// {
+//     int *arr = mymalloc(34);
+//     display();
+// }
