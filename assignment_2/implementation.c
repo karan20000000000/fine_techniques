@@ -123,7 +123,7 @@ void display()
     {
         head = (blockinfo *)mem;
         head->next = NULL;
-        head->size = 5;
+        head->size = 0;
     }
     blockinfo *temp = head;
 
@@ -223,11 +223,4 @@ int getRemainingFreeMem()
     }
 
     return size;
-}
-
-int main()
-{
-   int *arr = (int *) mymalloc(34);
-   display();
-   free(arr);
 }
