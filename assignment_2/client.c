@@ -4,6 +4,5 @@
 
 int main()
 {
-    setpolicy("best");
-    mymalloc(5);
+    
 }

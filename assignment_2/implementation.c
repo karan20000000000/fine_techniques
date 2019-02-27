@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-#define memsize 50
+#define memsize 66
 #define blksize sizeof(blockinfo)
 
 char *firstfit(int);
@@ -10,7 +10,7 @@ char *bestfit(int);
 char *worstfit(int);
 
 int policy = 1;
-char *(*policyfun)(int);
+char *(*policyfun)(int) = firstfit;
 
 typedef struct blockinfo
 {
@@ -22,7 +22,7 @@ char mem[memsize]; //to accomodate initial two things for bookkeeping and housek
 
 blockinfo *head; //may not start from the beginnning but initially its in the beginning
 
-int getidx(blockinfo *ptr) //get index of char *
+int getidx(blockinfo *ptr) //get index of blockinfo *
 {
     return ptr - (blockinfo *)mem;
 }
@@ -31,7 +31,6 @@ int getFreeMemAfter(blockinfo *p) //gets the free memory after a block
 {
     //either the next is null or there is a next pointer
 
-    //TODO: check for +-1 error
     int size;
 
     if (p->next == NULL) //only node or last node
@@ -59,26 +58,32 @@ void *mymalloc(int size)
         head = (blockinfo *)mem;
         head->next = NULL;
         head->size = 0;
-
-        if (size + blksize <= memsize)
-        {
-            head->size = size;
-            ret = (char *) head;
-        }
     }
-    else
-    {
-        ret = policyfun(size);
-    }
-    
+    ret = policyfun(size);
 
     return (void *)ret;
 }
 
-// void free(void *)
-// {
+void free(void *p)
+{
+    //go back from p's location to get a possible blockinfo struct location
+    blockinfo *blk = p - blksize;
+    blk = blk + 1;
 
-// }
+    if(blk <= head) return;
+
+    int idx = getidx(blk);
+    if(idx >= memsize) return;
+    
+    blk->size = 0;  //seems redundant
+
+    blockinfo *temp = head;
+    while(temp != NULL && temp->next != blk)
+    {
+        temp = temp->next;
+    }
+    temp->next = blk->next;
+}
 
 void setpolicy(char *pol)
 {
@@ -99,7 +104,7 @@ void setpolicy(char *pol)
     }
 }
 
-char *getpolicy()
+char * getpolicy()
 {
     switch (policy)
     {
@@ -130,7 +135,7 @@ void display()
     printf("\n");
 }
 
-char *firstfit(int size) //return first free mem block
+char * firstfit(int size) //return first free mem block
 {
     blockinfo *temp = head;
     while (temp != NULL && getFreeMemAfter(temp) < (size + blksize))
@@ -149,7 +154,7 @@ char *firstfit(int size) //return first free mem block
     return (char *)(newblock + blksize);
 }
 
-char *bestfit(int size)
+char * bestfit(int size)
 {
     blockinfo *temp = head;
     blockinfo *insertAfter = NULL;
@@ -178,7 +183,7 @@ char *bestfit(int size)
     return (char *)(newblock + blksize);
 }
 
-char *worstfit(int size)
+char * worstfit(int size)
 {
     blockinfo *temp = head;
     blockinfo *insertAfter = NULL;
@@ -220,3 +225,9 @@ int getRemainingFreeMem()
     return size;
 }
 
+int main()
+{
+   int *arr = (int *) mymalloc(34);
+   display();
+   free(arr);
+}
