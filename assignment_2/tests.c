@@ -30,14 +30,18 @@ int main()
    display();
 
    free(ptr[0]);
-
-   display();
-
    free(ptr[2]);
-   display();
-
    free(ptr[1]);
    display();
+
+   free(ptr[15]);
+   free(ptr[16]);
+   display();
+
+   free(ptr[37]);
+   display();
+
+   //call setpolicy and inspect memory
 
    return 0;
 }

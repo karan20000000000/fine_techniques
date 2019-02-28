@@ -4,6 +4,8 @@
 
 int main()
 {
+    //TODO: Fix client code
+    
     int accepting = 1;
     int option;
     while(accepting)

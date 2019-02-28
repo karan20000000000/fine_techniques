@@ -117,24 +117,6 @@ char * getpolicy()
     }
 }
 
-void display()
-{
-    if (head == NULL)
-    {
-        head = (blockinfo *)mem;
-        head->next = NULL;
-        head->size = 0;
-    }
-    blockinfo *temp = head;
-
-    while (temp != NULL)
-    {
-        printf("%d | %d | ... | %d\t %p -> ", getidx(temp), temp->size, getFreeMemAfter(temp),temp->next);
-        temp = temp->next;
-    }
-    printf("\nRemaining free total: %d\n", getRemainingFreeMem());
-}
-
 char * firstfit(int size) //return first free mem block
 {
     blockinfo *temp = head;
@@ -224,6 +206,24 @@ int getRemainingFreeMem()
     }
 
     return size;
+}
+
+void display()
+{
+    if (head == NULL)
+    {
+        head = (blockinfo *)mem;
+        head->next = NULL;
+        head->size = 0;
+    }
+    blockinfo *temp = head;
+
+    while (temp != NULL)
+    {
+        printf("%d | %d | ... | %d\t %p -> ", getidx(temp), temp->size, getFreeMemAfter(temp),temp->next);
+        temp = temp->next;
+    }
+    printf("\nRemaining free total: %d\n", getRemainingFreeMem());
 }
 
 // int main()
