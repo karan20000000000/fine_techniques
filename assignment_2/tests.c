@@ -7,9 +7,13 @@
 #define lower 4
 #define upper 500
 
+void *ptr[100];
 int main()
 {
    // srand(time(0));
+
+   int c = 0;
+
    srand(50);
    int n;
 
@@ -17,7 +21,19 @@ int main()
    while(getRemainingFreeMem() > 16)
    {
       n = (rand() % (upper - lower + 1)) + lower;
-      mymalloc(n);
-      display();
+      ptr[c++] = mymalloc(n);
    }
+   display();
+
+   free(ptr[0]);
+
+   display();
+
+   free(ptr[2]);
+   display();
+
+   free(ptr[1]);
+   display();
+
+   return 0;
 }

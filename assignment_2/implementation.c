@@ -68,8 +68,7 @@ void *mymalloc(int size)
 void free(void *p)
 {
     //go back from p's location to get a possible blockinfo struct location
-    blockinfo *blk = p - blksize;
-    blk = blk + 1;
+    blockinfo *blk = (blockinfo *) ((char *) p - blksize);
 
     if(blk <= head) return;
 
@@ -130,7 +129,7 @@ void display()
 
     while (temp != NULL)
     {
-        printf("%d | %d | ...\t %p -> ", getidx(temp), temp->size, temp->next);
+        printf("%d | %d | ... | %d\t %p -> ", getidx(temp), temp->size, getFreeMemAfter(temp),temp->next);
         temp = temp->next;
     }
     printf("\nRemaining free total: %d\n", getRemainingFreeMem());
@@ -152,7 +151,7 @@ char * firstfit(int size) //return first free mem block
     newblock->size = size;
     temp->next = newblock;
 
-    return (char *)(newblock + blksize);
+    return ((char *) newblock + blksize);
 }
 
 char * bestfit(int size)
@@ -181,7 +180,7 @@ char * bestfit(int size)
     newblock->size = size;
     insertAfter->next = newblock;
 
-    return (char *)(newblock + blksize);
+    return ((char *) newblock + blksize);
 }
 
 char * worstfit(int size)
@@ -210,7 +209,7 @@ char * worstfit(int size)
     newblock->size = size;
     insertAfter->next = newblock;
 
-    return (char *)(newblock + blksize);
+    return ((char *) newblock + blksize);
 }
 
 int getRemainingFreeMem()
