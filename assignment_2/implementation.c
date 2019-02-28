@@ -149,6 +149,7 @@ char * bestfit(int size)
         if (diff >= 0 && diff < mindiff)
         {
             insertAfter = temp;
+            mindiff = diff;
         }
 
         temp = temp->next;
@@ -169,16 +170,16 @@ char * worstfit(int size)
 {
     blockinfo *temp = head;
     blockinfo *insertAfter = NULL;
-    int mindiff = 0;
+    int maxdiff = 0;
 
     while (temp != NULL)
     {
         int freemem = getFreeMemAfter(temp);
         int diff = freemem - size;
-        if (diff >= 0 && diff > mindiff)
+        if (diff >= 0 && diff > maxdiff)
         {
             insertAfter = temp;
-            mindiff = diff;
+            maxdiff = diff;
         }
 
         temp = temp->next;
