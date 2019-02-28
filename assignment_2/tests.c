@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> 
-#include <time.h> 
+#include <time.h>
+
 #include "interface.h"
 
 #define lower 4
@@ -21,7 +22,10 @@ int main()
    while(getRemainingFreeMem() > 16)
    {
       n = (rand() % (upper - lower + 1)) + lower;
-      ptr[c++] = mymalloc(n);
+      void *p = mymalloc(n);
+
+      if(p != NULL)
+      { ptr[c++] = p; }
    }
    display();
 

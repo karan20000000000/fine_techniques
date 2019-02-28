@@ -196,6 +196,7 @@ char * worstfit(int size)
         if (diff >= 0 && diff > mindiff)
         {
             insertAfter = temp;
+            mindiff = diff;
         }
 
         temp = temp->next;
