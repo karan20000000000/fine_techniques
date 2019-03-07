@@ -145,7 +145,7 @@ char * bestfit(int size)
     while (temp != NULL)
     {
         int freemem = getFreeMemAfter(temp);
-        int diff = freemem - size;
+        int diff = freemem - (size + blksize);
         if (diff >= 0 && diff < mindiff)
         {
             insertAfter = temp;
@@ -175,7 +175,7 @@ char * worstfit(int size)
     while (temp != NULL)
     {
         int freemem = getFreeMemAfter(temp);
-        int diff = freemem - size;
+        int diff = freemem - (size + blksize);
         if (diff >= 0 && diff > maxdiff)
         {
             insertAfter = temp;
