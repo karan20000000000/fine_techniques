@@ -181,7 +181,7 @@ void print_free_list()
 void *mymalloc(int size)
 {
     char *ret = NULL;
-    ret = bestfit(size);
+    ret = firstfit(size);
 
     return (void *)ret;
 }
