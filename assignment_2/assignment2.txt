@@ -1,0 +1,7 @@
+Implement Binary counter to find the second biggest in an array of integers.
+The number of elements may be an exact power of 2 or may not be.
+Algorithm should have at most n + logn - 2 comparisons.
+It may use extra space proportional to (logn) ^ 2.
+
+Submission date : 24th midnight.
+

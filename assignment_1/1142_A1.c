@@ -3,12 +3,6 @@
 #include <limits.h>
 #include <stdlib.h>
 
-#define debug 0
-
-#if debug
-#include <signal.h>
-#endif
-
 #include "a.h"
 
 #define blksize sizeof(blockinfo)
@@ -32,59 +26,17 @@ void allocate(int n)
     mem = (char *)malloc(memsize * sizeof(char));
     p = mem;
 
+    //initialize the head pointer in the memory array
     head = (blockinfo *)mem;
     head->next = NULL;
     head->size = n - blksize;
     head->occupied = 0;
 }
 
-static int getidx(blockinfo *ptr) //get index of blockinfo *
+static int getidx(blockinfo *ptr) //get index in mem array of blockinfo *
 {
     // return ptr - (blockinfo *)mem;
     return (char *)ptr - mem;
-}
-
-static char *firstfit(int size) //return first free mem block
-{
-    blockinfo *temp = head;
-    while (temp != NULL)
-    {
-        if (!temp->occupied && temp->size >= size)
-        {
-            break;
-        }
-        temp = temp->next;
-    }
-
-    if (temp == NULL)
-        return NULL; //was unable to find a free memory block
-
-    temp->occupied = 1;
-    temp->size = size;
-
-    //if the difference between temp->next and the newly allocated node temp is > blksize then make a new node
-
-    int sizediff = 0;
-    if (temp->next != NULL)
-    {
-        sizediff = ((char *)temp->next - ( (char *) temp + blksize + temp->size));
-    }
-    else
-    {
-        sizediff = memsize - 1 - (getidx(temp) + blksize + temp->size);
-    }
-
-    if (sizediff > blksize)
-    {
-        blockinfo *nextNode = (blockinfo *)((char *)temp + blksize + temp->size);
-        nextNode->next = temp->next;
-        nextNode->occupied = 0;
-        nextNode->size = sizediff - blksize;
-
-        temp->next = nextNode;
-    }
-
-    return ((char *)temp + blksize);
 }
 
 static char *bestfit(int size)
@@ -95,7 +47,7 @@ static char *bestfit(int size)
     blockinfo *insertAt = NULL;
     int mindiff = INT_MAX;
 
-    //find the block
+    //find the block with tightest bound of free space with the size the user wants
     while (temp != NULL)
     {
         int freemem = temp->size;
@@ -121,6 +73,8 @@ static char *bestfit(int size)
 
     //if the difference between insertAt->next and the newly allocated node insertAt is > blksize then make a new node
     int sizediff = 0;
+
+    //first find out if there's a node after current one, or are we at the end
     if (insertAt->next != NULL)
     {
         sizediff = ( (char *) insertAt->next - ( (char *) insertAt + blksize + insertAt->size));
@@ -130,6 +84,7 @@ static char *bestfit(int size)
         sizediff = memsize - 1 - (getidx(insertAt) + blksize + insertAt->size);
     }
 
+    //make new node if there's space
     if (sizediff > blksize)
     {
         blockinfo *nextNode = (blockinfo *)((char *)insertAt + blksize + insertAt->size);
@@ -222,31 +177,37 @@ void display_mem_map()
     }
 }
 
-// int main()
-// {
-//     allocate(1000);
 
-//     char *p1 = mymalloc(50);
-//     char *p2 = mymalloc(30);
-//     char *p3 = mymalloc(70);
-//     char *p4 = mymalloc(50);
-//     char *p5 = mymalloc(60);
-//     char *p6 = mymalloc(70);
+/*
 
-//     myfree(p3); myfree(p5);
+int main()
+{
+    allocate(1000);
 
-//     display_mem_map();
+    char *p1 = mymalloc(50);
+    char *p2 = mymalloc(30);
+    char *p3 = mymalloc(70);
+    char *p4 = mymalloc(50);
+    char *p5 = mymalloc(60);
+    char *p6 = mymalloc(70);
 
-// #if debug
-//     raise(SIGINT);
-// #endif
+    display_mem_map();
 
-//     char *p7 = mymalloc(59);
-//     display_mem_map();
+    myfree(p3); myfree(p5);
 
-//     printf("freeing\n");
-//     myfree(p7);
-//     display_mem_map();
+    display_mem_map();
 
-//     return 0;
-// }
+    char *p7 = mymalloc(59);
+    display_mem_map();
+
+    printf("freeing\n");
+    myfree(p7);
+    display_mem_map();
+
+    printf("%p\n", p);
+
+    return 0;
+}
+
+
+*/
