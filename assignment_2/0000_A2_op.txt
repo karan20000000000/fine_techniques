@@ -1,0 +1,31 @@
+//Output expected for given input file:
+
+20 x 5 = 20 5
+15 x 25 = 25 15
+20 5 x 25 15 = 25 20 15
+10 x 3 = 10 3
+2 x 18 = 18 2
+10 3 x 18 2 = 18 10 2
+25 20 15 x 18 10 2 = 25 18 20 15  
+
+20
+
+/*format : 
+Each line excepting the last two lines in the output file represents a match played and its result, on either side of the '=' sign, according to the order of the input.
+
+Output set will first have the highest of all elements of the two sets.
+This will be followed by the highest number in the losing set.
+Finally, the numbers that have lost to the highest number from the winner set are printed.
+for example: 
+25 20 15 x 18 10 2 = 25 18 20 15  
+Here, the two competing sets are 25 20 15 and 18 10 2
+The biggest number is 25, and hence is printed first, post the '=' sign.
+Hence 25 20 15 is the winning set, and 18 10 2 is the losing set. 
+The biggest number of the losing set is 18, and hence is printed as the second number.
+This is followed by all the numbers that have lost to 25(ie, 20 15), in the order as that in the winning set itself.
+
+Second last line is a blank line
+Last line is the second biggest number.
+
+*/
+
