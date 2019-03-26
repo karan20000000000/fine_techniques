@@ -15,6 +15,8 @@ static void insert_beg(node **p, int key);
 static void disp_list(node *p);
 static int find_largest(node *p);
 
+
+//inserts element after head
 static void insert_beg(node **p, int key)
 {
     node *temp = *p;
@@ -34,6 +36,7 @@ static void insert_beg(node **p, int key)
     }
 }
 
+//adds a new element as head
 static void insert_head(node **p, int key)
 {
     node *newNode = (node *)malloc(sizeof(node));
@@ -57,6 +60,7 @@ static void disp_list(node *p)
     }
 }
 
+//generates the initial binary counter array
 static node **getBCountArr(int n)
 {
     node **temp = (node **)malloc(n * sizeof(node *));
@@ -68,6 +72,7 @@ static node **getBCountArr(int n)
     return temp;
 }
 
+//finds the largest key in a linkedlist
 static int find_largest(node *p)
 {
     if (p == NULL)
@@ -95,18 +100,18 @@ void sec_big(int *a, int n)
     node **bcarr;
     bcarr = getBCountArr(s);
 
-    node *compList = NULL;
+    node *compList = NULL;  //linkedlist to store intermediaries
 
     for (int i = 0; i < n; i++)
     {
         if (bcarr[0] == NULL)
         {
-            insert_beg(&bcarr[0], a[i]);
+            insert_beg(&bcarr[0], a[i]);    //insert to first slot if there's no contender
         }
         else
         {
             compList = bcarr[0];
-            //fight here
+            //fight because there's a contender
             printf("%d x %d = ", bcarr[0]->data, a[i]);
             if (bcarr[0]->data > a[i])
             {
@@ -119,11 +124,11 @@ void sec_big(int *a, int n)
                 insert_head(&compList, a[i]);
             }
 
-            bcarr[0] = NULL;
+            bcarr[0] = NULL;    //empty out first slot
 
             for (int j = 1; j < s; j++)
             {
-                if (bcarr[j] == NULL) //if the next slot is empty, then just put the compList here
+                if (bcarr[j] == NULL) //if the next slot is empty, then just put the compList back there
                 {
                     bcarr[j] = compList;
                     compList = NULL;
@@ -131,7 +136,7 @@ void sec_big(int *a, int n)
                 }
                 else
                 {
-                    //fight here
+                    //fight between bcarr[j] and compList
                     disp_list(bcarr[j]);
                     printf("x ");
                     disp_list(compList);
@@ -148,7 +153,7 @@ void sec_big(int *a, int n)
                     {
                         insert_beg(&compList, bcarr[j]->data);
                     }
-                    bcarr[j] = NULL; //empty out bcarr[j], TODO: free it
+                    bcarr[j] = NULL; //empty out bcarr[j]
 
                     disp_list(compList);
                     printf("\n");
@@ -202,7 +207,7 @@ void sec_big(int *a, int n)
                         {
                             insert_beg(&compList, bcarr[i]->data);
                         }
-                        bcarr[i] = NULL; //empty out bcarr[i], TODO: free it
+                        bcarr[i] = NULL; //empty out bcarr[i]
                         disp_list(compList);
                         printf("\n");
                     }

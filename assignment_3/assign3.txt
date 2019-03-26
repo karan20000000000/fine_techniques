@@ -1,0 +1,11 @@
+Find all solutions to 8-5-3 litre jug problem.
+you are given 3 jugs of capacity 8 litre, 5 litre and 3 litre.
+8 litre jug is full with milk.
+Measure exactly 4 litres.
+You can pour from any jug to any other jug.
+There are no markings on any of the jugs.
+
+You may use our solution to Can-Mis problem.
+
+Submit by 31st EOD.
+ 
