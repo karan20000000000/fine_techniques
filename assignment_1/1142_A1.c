@@ -90,7 +90,7 @@ static char *bestfit(int size)
         blockinfo *nextNode = (blockinfo *)((char *)insertAt + blksize + insertAt->size);
         nextNode->next = insertAt->next;
         nextNode->occupied = 0;
-        nextNode->size = sizediff - blksize;
+        nextNode->size = sizediff - blksize + 1;
 
         insertAt->next = nextNode;
     }
@@ -136,7 +136,7 @@ void myfree(void *p)
     while (after != NULL && !after->occupied)
     {
         blk->next = after->next;
-        blk->size += after->size;
+        blk->size += after->size + blksize;
         after = after->next;
     }
 
@@ -178,11 +178,12 @@ void display_mem_map()
 }
 
 
-/*
+
 
 int main()
 {
     allocate(1000);
+
 
     char *p1 = mymalloc(50);
     char *p2 = mymalloc(30);
@@ -191,23 +192,36 @@ int main()
     char *p5 = mymalloc(60);
     char *p6 = mymalloc(70);
 
-    display_mem_map();
+/*
+    display_mem_map(); printf("\n");
 
     myfree(p3); myfree(p5);
 
-    display_mem_map();
+    display_mem_map(); printf("\n");
 
     char *p7 = mymalloc(59);
-    display_mem_map();
+    display_mem_map(); printf("\n");
 
     printf("freeing\n");
     myfree(p7);
-    display_mem_map();
+    display_mem_map(); printf("\n");
 
-    printf("%p\n", p);
+    // printf("%p\n", p);
+*/
+
+    display_mem_map(); printf("\n");
+    myfree(p4);
+    display_mem_map(); printf("\n");
+    myfree(p3);
+    display_mem_map(); printf("\n");
+    myfree(p2);
+    display_mem_map(); printf("\n");
+
+    myfree(p5);
+    display_mem_map(); printf("\n");
+
 
     return 0;
 }
 
 
-*/

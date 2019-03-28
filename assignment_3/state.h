@@ -1,3 +1,5 @@
+#pragma once
+
 struct state
 {
 	int eightV; // volume of milk in 8 litre jug
@@ -12,15 +14,12 @@ void init_state(state_t *ptr_state);
 void disp_state(const state_t *ptr_state);
 void set_state(state_t *ptr_state, int eightV, int fiveV, int threeV);
 
-void fill_85(const state_t *src, state_t *dst);
-void fill_83(const state_t *src, state_t *dst);
-void fill_53(const state_t *src, state_t *dst);
-void empty_85(const state_t *src, state_t *dst);
-void empty_83(const state_t *src, state_t *dst);
-void empty_58(const state_t *src, state_t *dst);
-void empty_53(const state_t *src, state_t *dst);
-void empty_38(const state_t *src, state_t *dst);
-void empty_35(const state_t *src, state_t *dst);
+void move_85(const state_t *src, state_t *dst);
+void move_83(const state_t *src, state_t *dst);
+void move_58(const state_t *src, state_t *dst);
+void move_53(const state_t *src, state_t *dst);
+void move_38(const state_t *src, state_t *dst);
+void move_35(const state_t *src, state_t *dst);
 
 void set_state(state_t *ptr_state, int eightV, int fiveV, int threeV);
 int is_invalid(const state_t* ptr_state);

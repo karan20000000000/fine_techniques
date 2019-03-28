@@ -1,5 +1,5 @@
 #include <stdio.h>
-// #include "state.h"
+#include "state.h"
 #include "list.h"
 
 int main()
@@ -8,24 +8,19 @@ int main()
     set_state(&start_state, 8, 0, 0);
 
     void (*move[])(const state_t *src, state_t *dst) = {
-        fill_85,
-        fill_83,
-        fill_53,
-        empty_85,
-        empty_83,
-        empty_58,
-        empty_53,
-        empty_38,
-        empty_35};
+		move_85,
+		move_83,
+		move_58,
+		move_53,
+		move_38,
+        move_35
+	};
 
-    int moveSize = 9;
 
     list_t l;
     init_list(&l);
-    state_t temp, goal_state;
+    state_t temp;
     add_at_end(&l, &start_state);
-
-    set_state(&goal_state, 4, 4, 0);
 
     int soln = 0;
 
@@ -34,26 +29,24 @@ int main()
     int executing = 1;
     int numSolutions = 0;
 
-    while (executing)
-    {
-        index = l.tail->st.fn_index;
-        move[index](&l.tail->st, &temp);
-        if (!is_invalid(&temp) && !is_repeated(&l, &temp))
-        {
-            // printf("adding\n");
-            add_at_end(&l, &temp);
-            soln = are_same(&temp, &goal_state);
+    while(executing)
+	{
+		index = l.tail->st.fn_index;
+		move[index](&l.tail->st , &temp);
+		if(!is_invalid(&temp) && ! is_repeated(&l, &temp))
+		{
+			// printf("adding\n");
+			add_at_end(&l, &temp);
+			soln = is_final_state(&temp);
 
-            if (soln)
-            {
+            if(soln)
+            {  
                 numSolutions++;
-                printf("Solution: %d\n", numSolutions);
+                // printf("Solution: %d\n", numSolutions);
                 disp_list(&l);
                 printf("\n");
-                if (index < moveSize)
-                {
-                    l.tail->st.fn_index++;
-                }
+                if(index < 6)
+                { l.tail->st.fn_index++; }
                 // else
                 // {
                 //     printf("HERE\n");
@@ -62,21 +55,27 @@ int main()
                 // }
                 soln = 0;
             }
-        }
-        else
-        {
-            // list empty checked
-            while (l.tail != NULL && ++l.tail->st.fn_index == moveSize)
-            {
-                // printf("back tracking\n");
-                int empty = remove_at_end(&l);
-                if (empty)
+		}
+		else
+		{
+			// list empty checked
+			while(l.tail != NULL && ++l.tail->st.fn_index == 6)
+			{
+				// printf("back tracking\n");
+				int empty = remove_at_end(&l);
+                if(empty)
                 {
                     executing = 0;
                 }
-            }
-        }
-    }
+			}
+			
+		}
+
+	}
 
     // disp_list(&l);
+
+    printf("%d\n", numSolutions);
+
+
 }
