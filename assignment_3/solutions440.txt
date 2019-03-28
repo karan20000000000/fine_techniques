@@ -1,0 +1,74 @@
+Solution: 1
+EightJug: 8, FiveJug: 0, ThreeJug: 0
+EightJug: 3, FiveJug: 5, ThreeJug: 0
+EightJug: 3, FiveJug: 2, ThreeJug: 3
+EightJug: 6, FiveJug: 2, ThreeJug: 0
+EightJug: 6, FiveJug: 0, ThreeJug: 2
+EightJug: 1, FiveJug: 5, ThreeJug: 2
+EightJug: 1, FiveJug: 4, ThreeJug: 3
+EightJug: 4, FiveJug: 4, ThreeJug: 0
+
+Solution: 2
+EightJug: 8, FiveJug: 0, ThreeJug: 0
+EightJug: 5, FiveJug: 0, ThreeJug: 3
+EightJug: 0, FiveJug: 5, ThreeJug: 3
+EightJug: 3, FiveJug: 5, ThreeJug: 0
+EightJug: 3, FiveJug: 2, ThreeJug: 3
+EightJug: 6, FiveJug: 2, ThreeJug: 0
+EightJug: 6, FiveJug: 0, ThreeJug: 2
+EightJug: 1, FiveJug: 5, ThreeJug: 2
+EightJug: 1, FiveJug: 4, ThreeJug: 3
+EightJug: 4, FiveJug: 4, ThreeJug: 0
+
+Solution: 3
+EightJug: 8, FiveJug: 0, ThreeJug: 0
+EightJug: 5, FiveJug: 0, ThreeJug: 3
+EightJug: 0, FiveJug: 5, ThreeJug: 3
+EightJug: 3, FiveJug: 5, ThreeJug: 0
+EightJug: 3, FiveJug: 2, ThreeJug: 3
+EightJug: 6, FiveJug: 2, ThreeJug: 0
+EightJug: 6, FiveJug: 0, ThreeJug: 2
+EightJug: 1, FiveJug: 5, ThreeJug: 2
+EightJug: 1, FiveJug: 4, ThreeJug: 3
+EightJug: 4, FiveJug: 4, ThreeJug: 0
+
+Solution: 4
+EightJug: 8, FiveJug: 0, ThreeJug: 0
+EightJug: 5, FiveJug: 0, ThreeJug: 3
+EightJug: 5, FiveJug: 3, ThreeJug: 0
+EightJug: 3, FiveJug: 5, ThreeJug: 0
+EightJug: 3, FiveJug: 2, ThreeJug: 3
+EightJug: 6, FiveJug: 2, ThreeJug: 0
+EightJug: 6, FiveJug: 0, ThreeJug: 2
+EightJug: 1, FiveJug: 5, ThreeJug: 2
+EightJug: 1, FiveJug: 4, ThreeJug: 3
+EightJug: 4, FiveJug: 4, ThreeJug: 0
+
+Solution: 5
+EightJug: 8, FiveJug: 0, ThreeJug: 0
+EightJug: 5, FiveJug: 0, ThreeJug: 3
+EightJug: 5, FiveJug: 3, ThreeJug: 0
+EightJug: 2, FiveJug: 3, ThreeJug: 3
+EightJug: 0, FiveJug: 5, ThreeJug: 3
+EightJug: 3, FiveJug: 5, ThreeJug: 0
+EightJug: 3, FiveJug: 2, ThreeJug: 3
+EightJug: 6, FiveJug: 2, ThreeJug: 0
+EightJug: 6, FiveJug: 0, ThreeJug: 2
+EightJug: 1, FiveJug: 5, ThreeJug: 2
+EightJug: 1, FiveJug: 4, ThreeJug: 3
+EightJug: 4, FiveJug: 4, ThreeJug: 0
+
+Solution: 6
+EightJug: 8, FiveJug: 0, ThreeJug: 0
+EightJug: 5, FiveJug: 0, ThreeJug: 3
+EightJug: 5, FiveJug: 3, ThreeJug: 0
+EightJug: 2, FiveJug: 3, ThreeJug: 3
+EightJug: 0, FiveJug: 5, ThreeJug: 3
+EightJug: 3, FiveJug: 5, ThreeJug: 0
+EightJug: 3, FiveJug: 2, ThreeJug: 3
+EightJug: 6, FiveJug: 2, ThreeJug: 0
+EightJug: 6, FiveJug: 0, ThreeJug: 2
+EightJug: 1, FiveJug: 5, ThreeJug: 2
+EightJug: 1, FiveJug: 4, ThreeJug: 3
+EightJug: 4, FiveJug: 4, ThreeJug: 0
+
