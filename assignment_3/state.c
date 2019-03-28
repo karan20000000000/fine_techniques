@@ -13,7 +13,7 @@ void init_state(state_t *ptr_state)
 
 void disp_state(const state_t *ptr_state)
 {
-    printf("EightJug: %d, FiveJug: %d, ThreeJug: %d\n", ptr_state->eightV, ptr_state->fiveV, ptr_state->threeV);
+    printf("%d %d %d\n", ptr_state->eightV, ptr_state->fiveV, ptr_state->threeV);
 }
 
 void set_state(state_t *ptr_state, int eightV, int fiveV, int threeV)
@@ -26,14 +26,14 @@ void set_state(state_t *ptr_state, int eightV, int fiveV, int threeV)
 int is_invalid(const state_t* ptr_state)
 {
     int totalV = ptr_state->threeV + ptr_state->fiveV + ptr_state->eightV;
-    return (ptr_state->eightV < 0 && ptr_state->eightV > 8) ||
-            (ptr_state->fiveV < 0 && ptr_state->fiveV > 5) ||
-            (ptr_state->threeV < 0 && ptr_state->threeV > 3) ||
+    return (ptr_state->eightV < 0 || ptr_state->eightV > 8) ||
+            (ptr_state->fiveV < 0 || ptr_state->fiveV > 5) ||
+            (ptr_state->threeV < 0 || ptr_state->threeV > 3) ||
             (totalV < 0 || totalV > 8 );
 }
 int is_final_state(const state_t* ptr_state)
 {
-    return ptr_state->eightV == 4 || ptr_state->fiveV == 4;
+    return ptr_state->eightV == 4 && ptr_state->fiveV == 4 && ptr_state->threeV == 0;
 }
 
 int are_same(const state_t *lhs, const state_t *rhs)
@@ -136,7 +136,7 @@ void move_35(const state_t *src, state_t *dst)
     //we can move till 5 is full or till 3 is empty
     if((5 - src->fiveV) < src->threeV)  //it'll overflow so don't move everything
     {
-        dst->fiveV = 8;
+        dst->fiveV = 5;
         dst->threeV = src->threeV - (5 - src->fiveV);
     }
     else    //pour everything from 3

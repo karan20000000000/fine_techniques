@@ -1,48 +1,214 @@
-Solution: 1
-EightJug: 8, FiveJug: 0, ThreeJug: 0
-EightJug: 3, FiveJug: 5, ThreeJug: 0
-EightJug: 3, FiveJug: 2, ThreeJug: 3
-EightJug: 6, FiveJug: 2, ThreeJug: 0
-EightJug: 6, FiveJug: 0, ThreeJug: 2
-EightJug: 1, FiveJug: 5, ThreeJug: 2
-EightJug: 1, FiveJug: 4, ThreeJug: 3
-EightJug: 4, FiveJug: 4, ThreeJug: 0
+8 0 0
+3 5 0
+0 5 3
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
 
-Solution: 2
-EightJug: 8, FiveJug: 0, ThreeJug: 0
-EightJug: 5, FiveJug: 0, ThreeJug: 3
-EightJug: 0, FiveJug: 5, ThreeJug: 3
-EightJug: 3, FiveJug: 5, ThreeJug: 0
-EightJug: 3, FiveJug: 2, ThreeJug: 3
-EightJug: 6, FiveJug: 2, ThreeJug: 0
-EightJug: 6, FiveJug: 0, ThreeJug: 2
-EightJug: 1, FiveJug: 5, ThreeJug: 2
-EightJug: 1, FiveJug: 4, ThreeJug: 3
-EightJug: 4, FiveJug: 4, ThreeJug: 0
+8 0 0
+3 5 0
+3 2 3
+0 5 3
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
 
-Solution: 3
-EightJug: 8, FiveJug: 0, ThreeJug: 0
-EightJug: 5, FiveJug: 0, ThreeJug: 3
-EightJug: 5, FiveJug: 3, ThreeJug: 0
-EightJug: 3, FiveJug: 5, ThreeJug: 0
-EightJug: 3, FiveJug: 2, ThreeJug: 3
-EightJug: 6, FiveJug: 2, ThreeJug: 0
-EightJug: 6, FiveJug: 0, ThreeJug: 2
-EightJug: 1, FiveJug: 5, ThreeJug: 2
-EightJug: 1, FiveJug: 4, ThreeJug: 3
-EightJug: 4, FiveJug: 4, ThreeJug: 0
+8 0 0
+3 5 0
+3 2 3
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
 
-Solution: 4
-EightJug: 8, FiveJug: 0, ThreeJug: 0
-EightJug: 5, FiveJug: 0, ThreeJug: 3
-EightJug: 5, FiveJug: 3, ThreeJug: 0
-EightJug: 2, FiveJug: 3, ThreeJug: 3
-EightJug: 0, FiveJug: 5, ThreeJug: 3
-EightJug: 3, FiveJug: 5, ThreeJug: 0
-EightJug: 3, FiveJug: 2, ThreeJug: 3
-EightJug: 6, FiveJug: 2, ThreeJug: 0
-EightJug: 6, FiveJug: 0, ThreeJug: 2
-EightJug: 1, FiveJug: 5, ThreeJug: 2
-EightJug: 1, FiveJug: 4, ThreeJug: 3
-EightJug: 4, FiveJug: 4, ThreeJug: 0
+8 0 0
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+0 5 3
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
 
+8 0 0
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+0 5 3
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
+
+8 0 0
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
+
+8 0 0
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+8 0 0
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
+
+8 0 0
+5 0 3
+0 5 3
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+8 0 0
+5 0 3
+5 3 0
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+8 0 0
+5 0 3
+5 3 0
+2 3 3
+0 5 3
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+8 0 0
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+0 5 3
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+8 0 0
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+8 0 0
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+0 5 3
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+8 0 0
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+7 0 1
+7 1 0
+4 1 3
+4 4 0
+
+8 0 0
+5 0 3
+5 3 0
+2 3 3
+2 5 1
+3 5 0
+3 2 3
+6 2 0
+6 0 2
+1 5 2
+1 4 3
+4 4 0
+
+16

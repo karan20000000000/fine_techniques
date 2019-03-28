@@ -1,3 +1,5 @@
+#pragma once
+
 struct state
 {
 	int eightV; // volume of milk in 8 litre jug

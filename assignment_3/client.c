@@ -1,5 +1,5 @@
 #include <stdio.h>
-// #include "state.h"
+#include "state.h"
 #include "list.h"
 
 int main()
@@ -42,7 +42,7 @@ int main()
             if(soln)
             {  
                 numSolutions++;
-                printf("Solution: %d\n", numSolutions);
+                // printf("Solution: %d\n", numSolutions);
                 disp_list(&l);
                 printf("\n");
                 if(index < 6)
@@ -74,6 +74,8 @@ int main()
 	}
 
     // disp_list(&l);
+
+    printf("%d\n", numSolutions);
 
 
 }
