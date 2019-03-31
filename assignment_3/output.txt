@@ -1,0 +1,15 @@
+// THIS QUESTION IS ONLY FOR SAMPLE OUTPUT, NOT FOR YOU TO SOLVE. You have to solve only the 8,5,3 litre jugs problem.
+// Three jugs of capacity 2, 3 and 4 litres. At the start, the 2L and 3L jugs are empty, and the 4L jug is full. Target state is 2L in the 2L and 3L jugs, and nothing in 4L jug. 
+// First line of output is the number of solutions, followed by a blank line, followed by the solutions.
+// Each line of output for each solution has three numbers, corresponding to the amount of liquid in the 4L, 3L and 2L jug.
+// In the case that there are multiple solutions to the problem, each solution must be separated from the next by ONE blank line.
+2
+
+4 0 0
+2 0 2
+0 2 2
+
+4 0 0
+1 3 0
+1 1 2
+0 2 2

@@ -4,6 +4,7 @@
 
 int main()
 {
+    freopen("output.txt", "w", stdout);
     state_t start_state;
     set_state(&start_state, 8, 0, 0);
 

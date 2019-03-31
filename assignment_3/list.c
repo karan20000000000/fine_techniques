@@ -78,6 +78,3 @@ int is_repeated(const list_t* ptr_list, const state_t* ptr_state)
 	}
 	return found;
 }
-
-
-
