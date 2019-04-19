@@ -1,0 +1,25 @@
+Implement a tree on a harddisk.
+
+Given how to create an ordered list on a harddisk, implement a binary search
+with the predicate "<" on a harddisk. You may assume the key to be an integer.
+
+You may observe that the first structure in the file is the header.
+In case of file, it has offset to the first filled node and offset to the first free node.
+If there are no freenodes, we add the new node at the end of the file.
+New freenodes are created only on deletion of a node.
+
+The rest of the nodes of the list have the key and the offset to the next node in the file.
+
+
+Your tree implementation can be similar.
+The first structure may have the offset to the root and offset to the first free node.
+Every other node may have key, offset to the leftsub tree and offset to the right subtree.
+
+
+Support the following operations:
+1. insert
+2. delete based on the key
+3. traversal - inorder
+4. traversal - pre-order
+
+
