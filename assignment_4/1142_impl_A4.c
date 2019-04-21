@@ -77,7 +77,7 @@ void insert_key(tree_t *ptr_tree, int key, FILE *fp)
     node_t temp_node;
     int temp;       //offset where the new node should be inserted
 
-    int wasFreeHeadUsed = 0;    //
+    int wasFreeHeadUsed = 0;    //used in case of a duplicate key
     if (ptr_tree->free_head == -1)      //if free list is empty then just go the end to insert
     {
         fseek(fp, 0, SEEK_END);
@@ -139,7 +139,7 @@ void insert_key(tree_t *ptr_tree, int key, FILE *fp)
         {
             prevNode.right_offset = temp;
         }
-        else
+        else        //ignore the duplicate key, reset back ptr_tree and return
         {
             if(wasFreeHeadUsed)
             {
@@ -191,9 +191,9 @@ void delete_key(tree_t *ptr_tree, int key, FILE *fp)
         readData(fp, temp, &tempNode);
     }
 
-    if (temp != -1)
+    if (temp != -1) //if key is found
     {
-        if (prev != -1)
+        if (prev != -1)     //we're not dealing with the root
         {
             if (tempNode.right_offset == -1 && tempNode.left_offset == -1) //if node to be deleted is leaf
             {
