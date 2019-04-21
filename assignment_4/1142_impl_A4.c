@@ -7,18 +7,12 @@ void readData(FILE *fp, int offset, node_t *st)
     fread(st, sizeof(node_t), 1, fp);
 }
 
-void writeData(FILE *fp, int offset, node_t *st)
-{
-    fseek(fp, offset, SEEK_SET);
-    fwrite(st, sizeof(node_t), 1, fp);
-}
-
 FILE *init_tree(tree_t *ptr_tree, const char *name)
 {
+    freopen("1142_op.txt", "w", stdout);    //redirects output to the output file mentioned
     FILE *fp = fopen(name, "r+");
-    if (fp == NULL)
+    if (fp == NULL)     //if tree.dat file is empty, it should be created
     {
-        printf("empty file\n");
         fp = fopen(name, "w");
         ptr_tree->free_head = -1;
         ptr_tree->root = -1;
@@ -40,7 +34,6 @@ void inorder(int offset, FILE *fp)
     if (offset != -1)
     {
         //getting the required node from file
-
         node_t temp;
         readData(fp, offset, &temp);
 
@@ -82,23 +75,26 @@ void insert_key(tree_t *ptr_tree, int key, FILE *fp)
 {
 
     node_t temp_node;
-    int temp;
-    if (ptr_tree->free_head == -1)
+    int temp;       //offset where the new node should be inserted
+
+    int wasFreeHeadUsed = 0;    //
+    if (ptr_tree->free_head == -1)      //if free list is empty then just go the end to insert
     {
         fseek(fp, 0, SEEK_END);
         temp = ftell(fp);
     }
-    else
+    else        //otherwise take the first free node
     {
         temp = ptr_tree->free_head;
         readData(fp, temp, &temp_node);
         ptr_tree->free_head = temp_node.right_offset;
+        wasFreeHeadUsed = 1;
     }
 
     temp_node.key = key;
     temp_node.left_offset = temp_node.right_offset = -1;
 
-    if (ptr_tree->root == -1)
+    if (ptr_tree->root == -1)       //if tree is empty
     {
         ptr_tree->root = temp;
         fseek(fp, 0, SEEK_SET);
@@ -106,15 +102,12 @@ void insert_key(tree_t *ptr_tree, int key, FILE *fp)
         fseek(fp, temp, SEEK_SET);
         fwrite(&temp_node, sizeof(node_t), 1, fp);
     }
-    else
+    else        //if tree is not empty
     {
-        // node_t *pres = ptr_tree->root;
-        // node_t *prev = NULL;
-
         int pres = ptr_tree->root;
         int prev = -1;
 
-        while (pres != -1)
+        while (pres != -1)  //find the position where we should insert the node
         {
             prev = pres;
 
@@ -125,26 +118,38 @@ void insert_key(tree_t *ptr_tree, int key, FILE *fp)
             {
                 pres = presNode.left_offset;
             }
-            else
+            else if(key > presNode.key)
             {
                 pres = presNode.right_offset;
             }
+            else    //ignore same keys
+            {
+                break;
+            }
+            
         }
 
         node_t prevNode;
         readData(fp, prev, &prevNode);
         if (key < prevNode.key)
         {
-            // prev->left = newNode;
-
             prevNode.left_offset = temp;
+        }
+        else if(key > prevNode.key)
+        {
+            prevNode.right_offset = temp;
         }
         else
         {
-            // prev->right = newNode;
-
-            prevNode.right_offset = temp;
+            if(wasFreeHeadUsed)
+            {
+                temp_node.left_offset = -1;
+                temp_node.right_offset = ptr_tree->free_head;
+                ptr_tree->free_head = temp;
+            }
+            return;
         }
+        
 
         //write ptr_tree, temp_node, and prev
         fseek(fp, 0, SEEK_SET);
@@ -246,7 +251,7 @@ void delete_key(tree_t *ptr_tree, int key, FILE *fp)
                     prevNode.right_offset = insuc;
                 }
 
-                //TODO: write back insucNode and insucPredNode
+                //write back insucNode and insucPredNode
                 fseek(fp, insuc, SEEK_SET);
                 fwrite(&insucNode, sizeof(node_t), 1, fp);
 
@@ -294,7 +299,7 @@ void delete_key(tree_t *ptr_tree, int key, FILE *fp)
 
                 ptr_tree->root = insuc;
 
-                //TODO: write back insucNode and insucPredNode
+                //write back insucNode and insucPredNode
                 fseek(fp, insuc, SEEK_SET);
                 fwrite(&insucNode, sizeof(node_t), 1, fp);
 
@@ -305,7 +310,6 @@ void delete_key(tree_t *ptr_tree, int key, FILE *fp)
                 }
             }
         }
-        // free(temp);
 
         //write back ptr_tree, and prevNode (if present), temp
 
