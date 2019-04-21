@@ -166,7 +166,10 @@ void insert_key(tree_t *ptr_tree, int key, FILE *fp)
 void delete_key(tree_t *ptr_tree, int key, FILE *fp)
 {
     if (ptr_tree->root == -1)
+    {
+        printf("-1\n");
         return;
+    }
 
     //get to the node to be deleted
     int temp = ptr_tree->root;
@@ -330,4 +333,10 @@ void delete_key(tree_t *ptr_tree, int key, FILE *fp)
         fseek(fp, temp, SEEK_SET);
         fwrite(&tempNode, sizeof(node_t), 1, fp);
     }
+    else
+    {
+        printf("-1\n");
+        return;
+    }
+    
 }
