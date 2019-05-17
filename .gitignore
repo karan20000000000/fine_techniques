@@ -9,4 +9,6 @@
 !.vscode/launch.json
 !.vscode/extensions.json
 
+*.out
+.vscode
 # End of https://www.gitignore.io/api/code

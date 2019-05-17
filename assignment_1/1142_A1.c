@@ -110,7 +110,7 @@ void myfree(void *p)
     blockinfo *blk = (blockinfo *)((char *)p - blksize);
 
     //taking care of extremities
-    if (blk <= head)
+    if (blk < head)
         return;
 
     int idx = getidx(blk);
@@ -146,7 +146,7 @@ void myfree(void *p)
     {
         temp = temp->next;
     }
-    if (!temp->occupied)
+    if (temp != NULL && !temp->occupied)
     {
         temp->size += blksize + blk->size;
         temp->next = blk->next;
@@ -210,7 +210,7 @@ int main()
 */
 
     display_mem_map(); printf("\n");
-    myfree(p4);
+    myfree(p1);
     display_mem_map(); printf("\n");
     myfree(p3);
     display_mem_map(); printf("\n");
